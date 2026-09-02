@@ -1,0 +1,306 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1.7cm,headheight=15pt]{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{helvet}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\definecolor{headingblue}{RGB}{55,88,125}
+\definecolor{boxblue}{RGB}{219,232,247}
+\definecolor{lightblue}{RGB}{238,245,252}
+\definecolor{lightyellow}{RGB}{250,247,222}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textbf{DSCPP-III-2026-T301}}
+\rhead{\textbf{PROJECT PROPOSAL}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\titleformat{\section}
+  {\color{headingblue}\Large\bfseries}
+  {}{0pt}{}
+\titleformat{\subsection}
+  {\color{headingblue}\large\bfseries}
+  {}{0pt}{}
+
+\newcommand{\sectiontitle}[1]{\vspace{3pt}\section*{#1}\vspace{2pt}}
+
+\begin{document}
+
+% ---------------- PAGE 1 ----------------
+\sectiontitle{PROJECT AND TEAM INFORMATION}
+
+\subsection*{Project Title}
+\begin{center}
+\fbox{\parbox{0.96\textwidth}{\centering\large\bfseries
+MUNSphere: Model United Nations Management System}}
+\end{center}
+
+\subsection*{Student / Team Information}
+
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.38\textwidth}|X|}
+\hline
+\textbf{Team Name} &
+\textbf{The Diplomatic Stack}\\
+\cline{1-2}
+\textbf{Project Code} & DSCPP-III-2026-T301\\
+\hline
+\textbf{Team member 1 (Team Lead)} &
+Thapliyal,Anshul\\
+& 2510377710\\
+& 2510377710@geu.ac.in\\
+& \includegraphics[width=1.35cm]{anshul.png}\\
+\hline
+\textbf{Team member 2} &
+Bahuguna,Akshita\\
+& 2510380239\\
+& 2510380239@geu.ac.in\\
+& \includegraphics[width=1.35cm]{akshita.png}\\
+\hline
+\textbf{Team member 3} &
+Gaur,Harsita\\
+& 2510370442\\
+& 2510370442@geu.ac.in\\
+& \includegraphics[width=1.35cm]{harsita.png}\\
+\hline
+\textbf{Team member 4} &
+Sundriyal,Siddharth\\
+& 2510370144\\
+& 2510370144@geu.ac.in\\
+& \includegraphics[width=1.35cm]{siddharth.png}\\
+\hline
+\end{tabularx}
+
+\newpage
+
+% ---------------- PAGE 2 ----------------
+\sectiontitle{PROPOSAL DESCRIPTION (10 pts)}
+
+\subsection*{Motivation (1 pt)}
+Model United Nations conferences have tasks happening at the same time like registering delegates,
+assigning them to committees tracking attendance, making speaker lists, handling motions, voting,
+scoring delegates and giving awards. Doing all these tasks by hand with spreadsheets, paper forms
+or different systems can cause work slow progress, wrong calculations and hard-to-find data.
+MUNSphere is a MUN Management System that keeps all parts of a conference in one digital
+place. I am motivated to use data structures and algorithms in actual MUN work instead of just
+learning them in theory.
+
+MUNSphere will use linked lists to store delegate records that can grow and shrink. MUNSphere
+will use queues and circular queues to hold the list of speakers as they speak. Stacks will keep a
+history of motions and actions. Priority queues will handle motions that need attention first.
+Binary Search Trees will help look up items in order. Hash Tables will let us find delegates quickly.
+I will also compare searching and sorting algorithms to see which run fastest and use the fewest
+steps. I will write this system in C++ using Object-Oriented Programming. I will create classes for
+delegates, committees, Executive Board members, motions, votes and conferences. I will use
+features like encapsulation, inheritance and polymorphism to keep the code clean.
+
+The goal of this project is to make a MUN management tool that shows how data structures in C
+and object-oriented programming in C++ can work together in a useful way.
+
+\subsection*{State of the Art / Current solution (1 pt)}
+The current management of MUN conferences usually involves a mix of spreadsheets, sign-up sheets,
+attendance sheets, messaging platforms, manual speaker lists, and separate voting or scoring mechanisms.
+These techniques may work for smaller conferences, but it sometimes requires organising team and
+executive board members to maintain several records at once. Speaker lists can be kept manually,
+voting results may need to be counted manually, and delegate scores and rankings can be done in
+spreadsheets. With many participants it can be difficult to search for a particular delegate or to look
+at old motions and activities. MUNS suggests a single system where all these activities are interconnected
+through a common application. The proposed solution, rather than a simple CRUD based management
+system, exposes the real Data Structures through meaningful operations.
+
+For example FIFO processing for speakers, stack used for motion history, BST and hash table lookup,
+algorithmic ranking. The mentor's recommendation also includes dashboards, persistence, validation,
+audit history and measurable algorithm performance.
+
+\newpage
+
+% ---------------- PAGE 3 ----------------
+\sectiontitle{Project Goals and Milestones (2 pts)}
+
+We think the main goal is to create a MUN Management System that blends Data Structures in C and
+Object-Oriented Programming in C++.
+
+The system will:
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+    \item Manage conferences and committee sessions.
+    \item Manage delegates.
+    \item Create committees and assign delegates and Executive Board members.
+    \item Manage session-wise attendance.
+    \item Implement a Speaker List using Queue/Circular Queue.
+    \item Provide speaking-time allocation and a session timer.
+    \item Manage motions, through their complete lifecycle.
+    \item Conduct Yes/No/Abstain voting and automatically calculate results.
+    \item Record and calculate delegate performance scores.
+    \item Rank delegates and generate awards.
+    \item Implement mandatory Hash Table and complete BST functionality.
+    \item Compare searching and sorting algorithms using performance data.
+    \item Provide GUI dashboards, reports, validation, persistence and activity history.
+\end{itemize}
+
+\newpage
+
+% ---------------- PAGE 4 ----------------
+\sectiontitle{Project Approach (3 pts)}
+
+The project will use an architecture that separates Data Structures, Algorithms, Application
+functionality and OOP components.
+
+\subsection*{Technologies}
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+    \item \textbf{C.} Data Structures and Algorithms
+    \item \textbf{C++.} Object-Oriented Programming and application logic
+    \item \textbf{File Handling.} Persistent storage
+    \item \textbf{GUI Framework.} To be chosen based on the development environment
+    \item \textbf{Development Environment.} Visual Studio / VS Code or similar
+    \item \textbf{Testing Tools.} Unit and functional testing using controlled datasets
+\end{itemize}
+
+\subsection*{Data Structures Layer}
+The following structures will be built and used in a way:
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+    \item Structures
+    \item Arrays
+    \item Linked Lists
+    \item Stack
+    \item Queue
+    \item Circular Queue
+    \item Priority Queue
+    \item Binary Search Tree
+    \item Hash Table
+\end{itemize}
+
+\subsection*{Algorithm Layer}
+The project will include:
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+    \item Linear Search
+    \item Hash-based Search
+    \item Bubble Sort
+    \item Selection Sort
+    \item Insertion Sort
+    \item Merge Sort
+    \item Quick Sort
+\end{itemize}
+
+\newpage
+
+% ---------------- PAGE 5 ----------------
+\sectiontitle{Project Approach (continued)}
+
+The system will track runtime, comparisons, swaps, probes and other relevant operation counts to
+compare algorithms.
+
+\subsection*{OOP Layer}
+C++ will be used to create classes such, as:
+\begin{center}
+\begin{tikzpicture}[node distance=7mm, every node/.style={font=\small}]
+\node[draw, rounded corners, fill=lightblue, minimum width=3cm] (person) {Person};
+\node[draw, rounded corners, below left=of person, minimum width=2.7cm] (delegate) {Delegate};
+\node[draw, rounded corners, below right=of person, minimum width=2.7cm] (eb) {EBMember};
+\draw[->] (person) -- (delegate);
+\draw[->] (person) -- (eb);
+
+\node[draw, rounded corners, below=of eb, xshift=-18mm, minimum width=2.1cm] (chair) {Chairperson};
+\node[draw, rounded corners, below=of eb, minimum width=2.1cm] (mod) {Moderator};
+\node[draw, rounded corners, below=of eb, xshift=18mm, minimum width=2.1cm] (scribe) {Scribe};
+\draw[->] (eb) -- (chair);
+\draw[->] (eb) -- (mod);
+\draw[->] (eb) -- (scribe);
+\end{tikzpicture}
+\end{center}
+
+Additional classes:
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt]
+    \item Committee
+    \item Motion
+    \item Vote
+    \item Conference
+\end{itemize}
+
+The OOP design will show encapsulation, abstraction, inheritance, inheritance, polymorphism,
+constructors, destructors, function overloading, function overriding and composition.
+
+The application will offer dashboards for administrators and committees and the GUI will show the
+underlying DSA operations of being just a CRUD interface.
+
+\newpage
+
+% ---------------- PAGE 6 ----------------
+\sectiontitle{System Architecture (High Level Diagram)(2 pts)}
+
+\begin{center}
+\includegraphics[width=0.96\textwidth]{system_architecture.png}
+\end{center}
+
+\sectiontitle{Project Outcome / Deliverables (1 pts)}
+
+This project will deliver a MUNSphere Management System that can handle every step of a MUN
+conference.
+
+\textbf{The expected deliverables are:}
+\begin{itemize}[leftmargin=1.3em,itemsep=5pt]
+    \item A working C/C++ MUN management application.
+    \item Modules for delegate registration and committee management.
+    \item Attendance system that tracks each session.
+    \item Live speaker list powered by Queue or Circular Queue with a timer.
+    \item Motion management that records actions in a Stack-based history.
+    \item Voting system that automatically calculates results.
+    \item Scoring for delegates, ranking them and generating awards.
+\end{itemize}
+
+\newpage
+
+% ---------------- PAGE 7 ----------------
+\sectiontitle{Assumptions}
+
+We assume that the MUN conference is managed by authorized organisers and Executive Board members.
+These authorized organizers and Executive Board members enter and update conference information
+through the system.
+
+The system will operate initially with stored data. The system does not need cloud deployment, online
+collaboration, authentication or AI features. Committee capacities, scoring criteria, award thresholds
+and voting rules will be configurable to match the conference requirements.
+
+The project will focus primarily on MUN conference management and DSA/OOP demonstration.
+International Press will remain an extension.
+
+\sectiontitle{References}
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=4pt]
+    \item Designing Data-Intensive Applications by Martin Kleppmann
+    \item Effective C++ by Scott Meyers
+    \item Algorithms (4th Edition) by Robert Sedgewick \& Kevin Wayne
+    \item Database Internals by Alex Petrov
+\end{enumerate}
+
+\sectiontitle{Additional Deliverables}
+
+\begin{itemize}[leftmargin=1.3em,itemsep=4pt]
+    \item A required Hash. A full Binary Search Tree implementation.
+    \item Comparison of searching methods: Linear, Binary, BST and Hash.
+    \item Comparison of sorting algorithms: Bubble, Selection, Insertion, Merge and Quick.
+    \item Graphical. Reports.
+    \item File-based storage that keeps a full audit history.
+    \item Mechanisms for validating input and handling errors.
+    \item Analysis of performance and algorithmic complexity.
+    \item Full documentation of the project and a detailed testing report.
+\end{itemize}
+
+The final system will show that the required data structures and OOP ideas are used as functional
+parts of a MUN application.
+
+\end{document}
