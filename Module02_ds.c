@@ -1,3 +1,4 @@
+
 // Module 2: Delegates Management - DS Version (C)
 // Data Structure: Queue for delegates waiting list
 
