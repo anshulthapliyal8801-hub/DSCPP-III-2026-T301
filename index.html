@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNSphere - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box" id="loginBox">
+            <h1>MUNSphere</h1>
+            <p>Model United Nations Management System</p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Login as:</label>
+                    <div class="role-cards">
+                        <label class="role-card">
+                            <input type="radio" name="role" value="delegate" checked>
+                            <span class="role-body">
+                                <span class="role-title">Delegate</span>
+                                <span class="role-desc">View only. Can raise POI / POO.</span>
+                            </span>
+                        </label>
+                        <label class="role-card">
+                            <input type="radio" name="role" value="eb">
+                            <span class="role-body">
+                                <span class="role-title">Executive Board</span>
+                                <span class="role-desc">Edit data. Rule on POI / POO.</span>
+                            </span>
+                        </label>
+                        <label class="role-card">
+                            <input type="radio" name="role" value="oc">
+                            <span class="role-body">
+                                <span class="role-title">Organising Committee</span>
+                                <span class="role-desc">Edit data. Manage points.</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <div id="errorMessage" class="error" style="display:none;"></div>
+
+            <div class="demo-info">
+                <h3>Demo Access</h3>
+                <p><strong>Username:</strong> Any username</p>
+                <p><strong>Password:</strong> 123@geu</p>
+                <p><strong>Role:</strong> Pick one of the three above</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/motion.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
