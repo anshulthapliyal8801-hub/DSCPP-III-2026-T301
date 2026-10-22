@@ -1,4 +1,4 @@
-// Module 8: Scoring - COMBINED (C++ class + Bubble Sort)
+
 
 #include <iostream>
 #include <string>
