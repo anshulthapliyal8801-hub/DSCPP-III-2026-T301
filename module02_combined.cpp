@@ -8,10 +8,7 @@
 
 using namespace std;
 
-// Everything in this unnamed namespace is private to this file.
-// Several modules use the same class names (Session, Delegate, Score...);
-// without this, the linker merged different classes with the same name
-// (One Definition Rule violation), which caused crashes.
+
 namespace {
 
 #define MAX_QUEUE 100
