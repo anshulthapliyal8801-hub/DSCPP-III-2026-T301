@@ -6,8 +6,7 @@
 
 using namespace std;
 
-// The unnamed namespace keeps these class names private to this file,
-// because other modules use the same names (Session, Delegate, Score...).
+
 namespace {
 
 class Score {
