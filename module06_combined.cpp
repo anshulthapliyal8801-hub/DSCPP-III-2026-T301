@@ -1,4 +1,3 @@
-// Module 6: Motions - COMBINED (C++ class + Linked List)
 
 #include <iostream>
 #include <string>
