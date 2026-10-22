@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNSphere - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>MUNSphere</h2>
+                <p>v1.0</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" data-section="dashboard" class="nav-item active">Dashboard</a>
+                <a href="#" data-section="delegates" class="nav-item">Delegates</a>
+                <a href="#" data-section="committees" class="nav-item">Committees</a>
+                <a href="#" data-section="sessions" class="nav-item">Sessions</a>
+                <a href="#" data-section="points" class="nav-item">Points <span id="pendingBadge" class="nav-badge" style="display:none;">0</span></a>
+                <a href="#" data-section="speeches" class="nav-item eb-only">Speech Marking</a>
+                <a href="#" data-section="marksheet" class="nav-item">Main Marksheet</a>
+                <a href="#" data-section="reports" class="nav-item">Reports</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p>User: <strong id="currentUser">User</strong></p>
+                <p><span id="roleBadge" class="role-badge">Role</span></p>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>MUNSphere Dashboard</h1>
+                <p>Model United Nations Conference Management System</p>
+            </header>
+
+            <div id="readOnlyBanner" class="readonly-banner" style="display:none;">
+                View-only access: Delegates cannot edit conference data. You can still raise a Point of Information or Point of Order.
+            </div>
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <h2>Dashboard Overview</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Delegates</h3>
+                        <p class="stat-value" id="totalDelegates">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>Total Committees</h3>
+                        <p class="stat-value" id="totalCommittees">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>Total Sessions</h3>
+                        <p class="stat-value" id="totalSessions">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>Pending Points</h3>
+                        <p class="stat-value" id="totalPendingPoints">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>System Status</h3>
+                        <p class="stat-value">Online</p>
+                    </div>
+                </div>
+                
+                <div class="section-box">
+                    <h3>Welcome to MUNSphere</h3>
+                    <p>This is a simple Model United Nations (MUN) Conference Management System.</p>
+                    <p>Use the sidebar to navigate through different modules:</p>
+                    <ul>
+                        <li><strong>Delegates</strong> - View and manage conference delegates</li>
+                        <li><strong>Committees</strong> - Manage committees and their capacity</li>
+                        <li><strong>Sessions</strong> - Create and manage conference sessions</li>
+                        <li><strong>Points</strong> - Raise and rule on Points of Information (POI) and Points of Order (POO)</li>
+                        <li><strong>Reports</strong> - View conference statistics and reports</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Delegates Section -->
+            <section id="delegates" class="content-section" style="display:none;">
+                <div class="section-header">
+                    <h2>Delegates Management</h2>
+                    <button onclick="showAddDelegateForm()" class="btn-primary edit-only">+ Add Delegate</button>
+                </div>
+                
+                <div class="section-box">
+                    <input type="text" id="searchDelegates" placeholder="Search delegates..." 
+                           class="search-box" onkeyup="searchDelegates()">
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Committee</th>
+                                <th>Score</th>
+                                <th class="edit-only">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="delegatesTableBody">
+                            <tr><td colspan="6" class="text-center">Loading delegates...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Add Delegate Modal -->
+                <div id="delegateModal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeDelegateModal()">&times;</span>
+                        <h2>Add New Delegate</h2>
+                        <form onsubmit="addDelegate(event)">
+                            <input type="text" placeholder="Name" id="delName" required>
+                            <input type="text" placeholder="Country" id="delCountry" required>
+                            <input type="text" placeholder="Committee" id="delCommittee" required>
+                            <button type="submit" class="btn-primary">Add Delegate</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Committees Section -->
+            <section id="committees" class="content-section" style="display:none;">
+                <div class="section-header">
+                    <h2>Committees Management</h2>
+                    <button onclick="showAddCommitteeForm()" class="btn-primary edit-only">+ Add Committee</button>
+                </div>
+                
+                <div class="section-box">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Capacity</th>
+                                <th>Members</th>
+                                <th class="edit-only">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="committeesTableBody">
+                            <tr><td colspan="5" class="text-center">Loading committees...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Add Committee Modal -->
+                <div id="committeeModal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeCommitteeModal()">&times;</span>
+                        <h2>Add New Committee</h2>
+                        <form onsubmit="addCommittee(event)">
+                            <input type="text" placeholder="Committee Name" id="comName" required>
+                            <input type="number" placeholder="Capacity" id="comCapacity" required>
+                            <button type="submit" class="btn-primary">Add Committee</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sessions Section -->
+            <section id="sessions" class="content-section" style="display:none;">
+                <div class="section-header">
+                    <h2>Sessions Management</h2>
+                    <button onclick="showAddSessionForm()" class="btn-primary edit-only">+ Add Session</button>
+                </div>
+                
+                <div class="section-box">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th class="edit-only">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sessionsTableBody">
+                            <tr><td colspan="5" class="text-center">Loading sessions...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Add Session Modal -->
+                <div id="sessionModal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeSessionModal()">&times;</span>
+                        <h2>Add New Session</h2>
+                        <form onsubmit="addSession(event)">
+                            <input type="text" placeholder="Session Name" id="sesName" required>
+                            <input type="date" id="sesDate" required>
+                            <button type="submit" class="btn-primary">Add Session</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Points Section (POI / POO) -->
+            <section id="points" class="content-section" style="display:none;">
+                <div class="section-header">
+                    <h2>Points of Information &amp; Order</h2>
+                    <div class="point-actions">
+                        <button onclick="openPointModal('POI')" class="btn-primary">Point of Information</button>
+                        <button onclick="openPointModal('POO')" class="btn-primary btn-order">Point of Order</button>
+                    </div>
+                </div>
+
+                <p id="pointsNote" class="hint" style="display:none;">You can raise points and withdraw your own. Only the Organising Committee can rule on them.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Pending POI</h3>
+                        <p class="stat-value" id="pendingPOI">0</p>
+                    </div>
+                    <div class="stat-card stat-order">
+                        <h3>Pending POO</h3>
+                        <p class="stat-value" id="pendingPOO">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ruled Today</h3>
+                        <p class="stat-value" id="ruledPoints">0</p>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <div class="queue-header">
+                        <h3>Floor Queue</h3>
+                        <select id="pointCommitteeFilter" class="filter-select" onchange="updatePointsView()">
+                            <option value="">All committees</option>
+                        </select>
+                    </div>
+                    <p class="hint">Points of Order are privileged and always shown ahead of Points of Information.</p>
+                    <div id="pointQueue" class="point-queue"></div>
+                </div>
+
+                <div class="section-box">
+                    <div class="queue-header">
+                        <h3>Ruling History</h3>
+                        <button onclick="clearRuledPoints()" class="btn-small btn-danger oc-only">Clear History</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Committee</th>
+                                <th>Raised By</th>
+                                <th>Subject</th>
+                                <th>Outcome</th>
+                                <th>Ruled By</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pointHistoryBody">
+                            <tr><td colspan="6" class="text-center">No points yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Speech Marking Section (Executive Board only) -->
+            <section id="speeches" class="content-section eb-only" style="display:none;">
+                <div class="section-header">
+                    <h2>Speech Marking</h2>
+                    <div class="point-actions">
+                        <button onclick="openSpeechModal()" class="btn-primary">+ Upload Speech</button>
+                        <button onclick="openSpeechSessionModal()" class="btn-primary btn-secondary-action">+ Add Session</button>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <div id="speechTabs" class="speech-tabs"></div>
+                    <p id="speechSessionInfo" class="hint"></p>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Delegate</th>
+                                    <th>Country</th>
+                                    <th>Speech</th>
+                                    <th>File</th>
+                                    <th>Marks</th>
+                                    <th>Remarks</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="speechTableBody">
+                                <tr><td colspan="7" class="text-center">No speeches yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section-box">
+                    <h3>Total Marks per Delegate</h3>
+                    <p class="hint">Sum of marks across all sessions, against the maximum for the sessions each delegate has been marked in.</p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Delegate</th>
+                                <th>Country</th>
+                                <th>Sessions Marked</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="speechTotalsBody">
+                            <tr><td colspan="5" class="text-center">No marks yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Main Marksheet Section (view: everyone, edit: Organising Committee only) -->
+            <section id="marksheet" class="content-section" style="display:none;">
+                <div class="section-header">
+                    <h2>Main Marksheet</h2>
+                </div>
+
+                <div id="marksheetNote" class="readonly-banner" style="display:none;">
+                    Only the Organising Committee can change the Main Marksheet.
+                </div>
+
+                <div class="section-box">
+                    <p class="hint">Speech marks are pulled from the Executive Board's Speech Marking (if a delegate has several speeches in one session, the highest mark is shown). The <strong>Main Score</strong> is the official score used in Reports.</p>
+                    <div class="table-scroll">
+                        <table class="data-table">
+                            <thead id="marksheetHead"></thead>
+                            <tbody id="marksheetBody">
+                                <tr><td colspan="6" class="text-center">No delegates yet</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Reports Section -->
+            <section id="reports" class="content-section" style="display:none;">
+                <h2>Reports & Statistics</h2>
+                
+                <div class="section-box">
+                    <h3>Conference Statistics</h3>
+                    <div class="report-grid">
+                        <div class="report-item">
+                            <h4>Total Participants</h4>
+                            <p id="reportTotalDelegates">0</p>
+                        </div>
+                        <div class="report-item">
+                            <h4>Total Committees</h4>
+                            <p id="reportTotalCommittees">0</p>
+                        </div>
+                        <div class="report-item">
+                            <h4>Total Sessions</h4>
+                            <p id="reportTotalSessions">0</p>
+                        </div>
+                        <div class="report-item">
+                            <h4>Points of Information</h4>
+                            <p id="reportTotalPOI">0</p>
+                        </div>
+                        <div class="report-item">
+                            <h4>Points of Order</h4>
+                            <p id="reportTotalPOO">0</p>
+                        </div>
+                        <div class="report-item">
+                            <h4>Conference Status</h4>
+                            <p>Active</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-box">
+                    <h3>Top Scoring Delegates</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topDelegatesBody">
+                            <tr><td colspan="4" class="text-center">No data yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Upload Speech Modal (EB only) -->
+    <div id="speechModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeSpeechModal()">&times;</span>
+            <h2>Upload Speech</h2>
+            <p id="speechModalSession" class="hint"></p>
+            <form onsubmit="submitSpeech(event)">
+                <select id="speechDelegate" class="modal-select" required></select>
+                <input type="text" id="speechTitle" placeholder="Speech title / topic" maxlength="100" required>
+                <label class="file-label" for="speechFile">Speech file (PDF, Word, text, audio or video, max 1.5 MB)</label>
+                <input type="file" id="speechFile" accept=".pdf,.doc,.docx,.txt,audio/*,video/*" required>
+                <button type="submit" class="btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Speech Session Modal (EB only) -->
+    <div id="speechSessionModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeSpeechSessionModal()">&times;</span>
+            <h2>Add Marking Session</h2>
+            <form onsubmit="submitSpeechSession(event)">
+                <input type="text" id="speechSessionName" placeholder="Session name (e.g. Crisis Session)" maxlength="40" required>
+                <input type="number" id="speechSessionMax" placeholder="Maximum marks" min="1" max="100" value="10" required>
+                <button type="submit" class="btn-primary">Add Session</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Raise Point Modal -->
+    <div id="pointModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closePointModal()">&times;</span>
+            <h2 id="pointModalTitle">Raise a Point</h2>
+            <p id="pointModalHint" class="hint"></p>
+            <form onsubmit="submitPoint(event)">
+                <input type="hidden" id="pointType">
+                <select id="pointCommittee" class="modal-select" required></select>
+                <textarea id="pointSubject" class="modal-textarea" placeholder="State your point briefly" maxlength="160" required></textarea>
+                <button type="submit" class="btn-primary">Raise Point</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/motion.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
