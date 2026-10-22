@@ -1,5 +1,4 @@
-// Module 1: Conference Management - COMBINED (C++ OOP + C DS)
-// Demonstrates using OOP classes with Stack data structure for history
+
 
 #include <iostream>
 #include <vector>
