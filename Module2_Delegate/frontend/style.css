@@ -1,0 +1,35 @@
+/* Module 2 lab — buckets and tree. Builds on /css/main.css. */
+
+.buckets { display: grid; gap: 0.3rem; margin-top: 0.75rem; }
+.bucket { display: flex; align-items: center; gap: 0.35rem; overflow-x: auto; font-size: 0.85rem; }
+.bucket .idx {
+  flex: 0 0 3.2rem; text-align: right; color: var(--muted);
+  font-variant-numeric: tabular-nums; padding-right: 0.3rem;
+}
+.bucket .cell {
+  flex: 0 0 auto; border: 1.5px solid var(--line); border-radius: var(--r-sm);
+  padding: 0.15rem 0.5rem; background: var(--surface); font-variant-numeric: tabular-nums;
+}
+.bucket.collision .cell { border-color: var(--brass-light); background: var(--brass-tint); }
+.bucket .empty-b { color: var(--line); }
+.bucket .arrow, .bucket .null { color: var(--muted); font-size: 0.8rem; }
+
+.load-bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin-top: 0.3rem; width: 9rem; }
+.load-bar span { display: block; height: 100%; background: var(--blue); }
+
+.tree-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); margin: 0.75rem 0; }
+#tree { display: block; }
+#tree line { stroke: var(--muted); stroke-width: 1.5; }
+#tree rect { fill: var(--surface); stroke: var(--blue); stroke-width: 1.5; }
+#tree text { fill: var(--ink); font-family: var(--sans); font-size: 12px; text-anchor: middle; }
+#tree text.nid { fill: var(--muted); font-size: 10px; }
+#tree .min rect, #tree .max rect { stroke: var(--brass); stroke-width: 2.5; }
+
+.traversals { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0; font-size: 0.9rem; }
+.traversals dt { font-weight: 600; }
+.traversals dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+
+.result-stats { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.result-stats div span { display: block; font-size: 0.8rem; color: var(--muted); }
+.result-stats div b { font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.path { font-size: 0.82rem; color: var(--muted); overflow-wrap: anywhere; }

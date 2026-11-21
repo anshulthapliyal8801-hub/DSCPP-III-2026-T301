@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 2 data-structure lab · MUNSphere</title>
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="/js/api.js" defer></script>
+  <script src="/js/ui.js" defer></script>
+  <script src="/js/auth.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="landing">
+    <header class="landing-top">
+      <img src="/assets/logo.svg" alt="">
+      <span>Module 2 data-structure lab</span>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Hash table: delegates by ID</h2>
+        <button class="btn btn-small" id="reload">Reload</button></div>
+      <div class="panel-body">
+        <div class="result-stats" id="hash-stats"></div>
+        <p class="sub" id="hash-rule"></p>
+        <div id="buckets" class="buckets"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Binary search tree: delegates by name</h2></div>
+      <div class="panel-body">
+        <div class="result-stats" id="bst-stats"></div>
+        <div class="tree-wrap"><svg id="tree" role="img" aria-label="Binary search tree of delegates"></svg></div>
+        <dl class="traversals" id="traversals"></dl>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Compare the four searches</h2></div>
+      <div class="toolbar">
+        <label>Delegate ID <input id="key-id" placeholder="e.g. D003" maxlength="15"></label>
+        <label>Name, for the BST <input id="key-name" placeholder="exact full name" maxlength="100"></label>
+        <button class="btn btn-primary" id="compare">Run all four</button>
+      </div>
+      <div class="panel-body" id="compare-result">
+        <p class="sub">Each search runs once in the C code on the real data. Comparisons are counted there.</p>
+      </div>
+    </section>
+
+    <p><a href="/admin.html#delegates">Back to the Admin dashboard</a></p>
+  </div>
+</body>
+</html>

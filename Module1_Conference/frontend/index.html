@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 1 data-structure lab · MUNSphere</title>
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="/js/api.js" defer></script>
+  <script src="/js/ui.js" defer></script>
+  <script src="/js/auth.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="landing">
+    <header class="landing-top">
+      <img src="/assets/logo.svg" alt="">
+      <span>Module 1 data-structure lab</span>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Linked lists in memory</h2>
+        <button class="btn btn-small" id="reload">Reload</button>
+      </div>
+      <div class="panel-body">
+        <p class="sub">These are the live singly linked lists inside conference_dsa.c, in node order.
+          Conferences and committees are appended at the tail; sessions are inserted in date and time order.</p>
+        <div id="lists"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Linear search by ID</h2></div>
+      <div class="toolbar">
+        <label>List
+          <select id="search-type">
+            <option value="conference">Conferences</option>
+            <option value="committee" selected>Committees</option>
+            <option value="session">Sessions</option>
+          </select></label>
+        <label>ID <input id="search-id" placeholder="e.g. COM002" maxlength="15"></label>
+        <button class="btn btn-primary" id="run-search">Run search</button>
+      </div>
+      <div class="panel-body" id="search-result">
+        <p class="sub">Pick a list and an ID. Each node visited is one comparison, counted by the C code.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Committee name search</h2></div>
+      <div class="toolbar">
+        <label>Text <input id="name-query" placeholder="e.g. council" maxlength="100"></label>
+        <button class="btn btn-primary" id="run-name">Search names</button>
+      </div>
+      <div class="panel-body" id="name-result">
+        <p class="sub">Case-insensitive match on name or abbreviation. Every node must be examined.</p>
+      </div>
+    </section>
+
+    <p><a href="/admin.html">Back to the Admin dashboard</a></p>
+  </div>
+</body>
+</html>

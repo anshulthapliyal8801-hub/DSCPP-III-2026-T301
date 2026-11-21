@@ -1,0 +1,54 @@
+/* Module 1 lab — linked-list visualization. Builds on /css/main.css. */
+
+.list-row { margin-bottom: 1.25rem; }
+.list-row:first-child { margin-top: 1rem; }
+.list-row h3 { margin-bottom: 0.5rem; }
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding: 0.35rem 0 0.6rem;
+}
+
+.chain .head-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-right: 0.25rem;
+}
+
+.node {
+  flex: 0 0 auto;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  padding: 0.35rem 0.6rem;
+  min-width: 5.5rem;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.node b { display: block; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.node small { display: block; color: var(--muted); font-size: 0.75rem; max-width: 9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.node.visited { border-color: var(--blue); background: var(--blue-tint); }
+.node.found { border-color: var(--green); background: var(--green-tint); }
+
+.arrow { color: var(--muted); flex: 0 0 auto; }
+.null { font-size: 0.8rem; font-weight: 600; color: var(--muted); flex: 0 0 auto; }
+
+.result-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 0.75rem 0 0.25rem;
+}
+.result-stats div span { display: block; font-size: 0.8rem; color: var(--muted); }
+.result-stats div b { font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+
+.verdict-found { color: var(--green); font-weight: 600; }
+.verdict-missing { color: var(--red); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .node { transition: none; }
+}
